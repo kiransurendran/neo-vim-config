@@ -1,0 +1,119 @@
+-- return {
+--   {
+--     "catppuccin/nvim",
+--     name = "catppuccin",
+--     priority = 1000,
+--
+--     opts = {
+--       flavour = "mocha",
+--       transparent = true, -- Enable transparent background
+--       styles = {
+--         sidebars = "transparent", -- Sidebars like file tree transparent
+--         floats = "transparent", -- Floating windows transparent
+--       },
+--
+--       integrations = {
+--         cmp = true,
+--         gitsigns = true,
+--         mason = true,
+--         mini = true,
+--         neotree = true,
+--         noice = true,
+--         notify = true,
+--         telescope = true,
+--         treesitter = true,
+--         which_key = true,
+--       },
+--     },
+--   },
+--
+--   {
+--     "LazyVim/LazyVim",
+--     opts = {
+--       colorscheme = "catppuccin",
+--     },
+--   },
+-- -- }
+-- return {
+--   {
+--     "folke/tokyonight.nvim",
+--     opts = {
+--       transparent = true, -- Enable transparent background
+--       styles = {
+--         sidebars = "transparent", -- Sidebars like file tree transparent
+--         floats = "transparent", -- Floating windows transparent
+--       },
+--     },
+--   },
+--   {
+--     "LazyVim/LazyVim",
+--     opts = {
+--       colorscheme = "tokyonight",
+--     },
+--   },
+-- }
+-- return {
+--   -- Configure the Tokyo Night plugin to use the "night" style variant
+--   {
+--     "folke/tokyonight.nvim",
+--     lazy = false, -- Make sure it loads immediately during startup
+--     priority = 1000, -- Load it before all other plugins
+--     opts = {
+--       style = "night", -- Choose between: storm, moon, night, or day
+--     },
+--   },
+--
+--   -- Tell LazyVim to use Tokyo Night as the active colorscheme
+--   {
+--     "LazyVim/LazyVim",
+--     opts = {
+--       colorscheme = "tokyonight-night",
+--     },
+--   },
+-- }
+--
+-- return {
+--   -- Add the unokai plugin
+--   {
+--     "tanvirtin/monokai.nvim",
+--     lazy = false,
+--     priority = 1000,
+--   },
+--
+--   -- Configure LazyVim to use unokai
+--   {
+--     "LazyVim/LazyVim",
+--     opts = {
+--       colorscheme = "unokai",
+--     },
+--   },
+-- }
+
+-- return {
+--   {
+--     "loctvl842/monokai-pro.nvim",
+--     lazy = false,
+--     priority = 1000,
+--     opts = {
+--       transparent_background = false,
+--       terminal_colors = true,
+--       filter = "pro", -- Available filters: "classic", "octagon", "pro", "machine", "ristretto", "spectrum"
+--     },
+--   },
+--   {
+--     "LazyVim/LazyVim",
+--     opts = {
+--       colorscheme = "monokai-pro",
+--     },
+--   },
+-- }
+-- One Dark theme
+return {
+  "navarasu/onedark.nvim",
+  config = function()
+    require("onedark").setup({
+      style = "warmer",
+    })
+    require("onedark").load()
+  end,
+}
