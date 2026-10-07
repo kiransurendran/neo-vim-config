@@ -1,39 +1,39 @@
 -- return {
+--   -- Install catppuccin
 --   {
 --     "catppuccin/nvim",
 --     name = "catppuccin",
---     priority = 1000,
---
+--     priority = 1000, -- Ensures it loads early to prevent screen flash
 --     opts = {
---       flavour = "mocha",
---       transparent = true, -- Enable transparent background
+--       flavour = "mocha", -- latte, frappe, macchiato, mocha
+--       term_colors = true,
+--       transparent_background = true, -- Enables transparency
 --       styles = {
---         sidebars = "transparent", -- Sidebars like file tree transparent
---         floats = "transparent", -- Floating windows transparent
+--         sidebars = "transparent", -- Makes sidebars transparent (Neo-tree, etc.)
+--         floats = "transparent", -- Makes floating windows transparent
 --       },
---
 --       integrations = {
 --         cmp = true,
 --         gitsigns = true,
---         mason = true,
---         mini = true,
---         neotree = true,
---         noice = true,
---         notify = true,
---         telescope = true,
+--         nvimtree = true,
 --         treesitter = true,
---         which_key = true,
+--         notify = true,
+--         mini = {
+--           enabled = true,
+--           indentscope_color = "",
+--         },
 --       },
 --     },
 --   },
 --
+--   -- Configure LazyVim to load the colorscheme
 --   {
 --     "LazyVim/LazyVim",
 --     opts = {
 --       colorscheme = "catppuccin",
 --     },
 --   },
--- -- }
+-- }
 -- return {
 --   {
 --     "folke/tokyonight.nvim",
@@ -89,31 +89,69 @@
 --   },
 -- }
 
+return {
+  "navarasu/onedark.nvim",
+  config = function()
+    require("onedark").setup({
+      style = "darker",
+      transparent = true,
+    })
+    require("onedark").load()
+  end,
+}
+-- return {
+--   -- add gruvbox
+--   {
+--     "ellisonleao/gruvbox.nvim",
+--     opts = {
+--       contrast = "hard", -- Options: "hard", "soft", or ""
+--     },
+--   },
+--
+--   -- Configure LazyVim to load gruvbox
+--   {
+--     "LazyVim/LazyVim",
+--     opts = {
+--       colorscheme = "gruvbox",
+--     },
+--   },
+-- }
+--
+--
+--
 -- return {
 --   {
---     "loctvl842/monokai-pro.nvim",
+--     "polirritmico/monokai-nightasty.nvim",
 --     lazy = false,
 --     priority = 1000,
 --     opts = {
---       transparent_background = false,
---       terminal_colors = true,
---       filter = "pro", -- Available filters: "classic", "octagon", "pro", "machine", "ristretto", "spectrum"
+--       dark_style_background = "transparent", -- Set dark background to transparent
+--       light_style_background = "default",
+--     },
+--     config = function(_, opts)
+--       require("monokai-nightasty").load(opts)
+--     end,
+--   },
+--   {
+--     "LazyVim/LazyVim",
+--     opts = {
+--       colorscheme = "monokai-nightasty",
+--     },
+--   },
+-- }
+-- return {
+--   {
+--     "catppuccin/nvim",
+--     name = "catppuccin",
+--     priority = 1000,
+--     opts = {
+--       transparent_background = true, -- Enables transparency
 --     },
 --   },
 --   {
 --     "LazyVim/LazyVim",
 --     opts = {
---       colorscheme = "monokai-pro",
+--       colorscheme = "catppuccin",
 --     },
 --   },
 -- }
--- One Dark theme
-return {
-  "navarasu/onedark.nvim",
-  config = function()
-    require("onedark").setup({
-      style = "warmer",
-    })
-    require("onedark").load()
-  end,
-}
