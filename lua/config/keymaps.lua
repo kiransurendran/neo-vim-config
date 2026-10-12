@@ -12,6 +12,9 @@ keymap.set({ "n", "i", "v" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save file" }
 -- keymap.set("n", "<C-z>", "gg<S-v>G")
 -- New tab
 keymap.set("n", "te", ":tabedit")
+
+keymap.set("n", "go", "o<Esc>", { desc = "Open line below and stay in normal mode" })
+-- keymap.set("n", "gO", "O<Esc>", { desc = "Open line above and stay in normal mode" })
 -- keymap.set("n", "<tab>", ":tabnext<Return>", opts)
 -- keymap.set("n", "<s-tab>", ":tabprev<Return>", opts)
 -- keymap.set("n", "te", ":tabedit")
