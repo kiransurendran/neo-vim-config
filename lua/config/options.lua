@@ -1,6 +1,14 @@
 -- Options are automatically loaded before lazy.nvim startup
 -- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
 -- Add any additional options here
+
+-- lua/config/options.lua
+
+-- Blinking underscore cursor for Normal, Visual, Command-line, and Insert modes
+-- vim.opt.guicursor = "n-v-c-i-ci-ve:hor20-blinkwait175-blinkoff150-blinkon175,r-cr:hor20"
+
+-- Blinking line (beam) cursor for all major modes
+vim.opt.guicursor = "n-v-c-i-ci-ve:vbar20-blinkwait175-blinkoff150-blinkon175,r-cr:vbar20"
 vim.opt.number = true
 vim.opt.wrap = true
 vim.opt.winbar = "%=%m %f"
@@ -17,28 +25,29 @@ vim.opt.scrolloff = 5
 -- vim.opt.background = "dark"
 vim.opt.list = false
 
+vim.g.lazygit_config = false
 vim.opt.laststatus = 3 -- for avante
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "c", "cpp" },
-  callback = function()
-    vim.opt_local.tabstop = 4
-    vim.opt_local.shiftwidth = 4
-    vim.opt_local.softtabstop = 4
-    vim.opt_local.expandtab = true
-    vim.opt.autoindent = true
-    vim.opt.tabstop = 4
-    vim.opt.softtabstop = 4
-    vim.opt.shiftwidth = 4
-  end,
+    pattern = { "c", "cpp" },
+    callback = function()
+        vim.opt_local.tabstop = 4
+        vim.opt_local.shiftwidth = 4
+        vim.opt_local.softtabstop = 4
+        vim.opt_local.expandtab = true
+        vim.opt.autoindent = true
+        vim.opt.tabstop = 4
+        vim.opt.softtabstop = 4
+        vim.opt.shiftwidth = 4
+    end,
 })
 
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = "*",
-  callback = function()
-    vim.opt_local.formatoptions:remove({ "c", "r", "o" })
-  end,
+    pattern = "*",
+    callback = function()
+        vim.opt_local.formatoptions:remove({ "c", "r", "o" })
+    end,
 })
 
 if vim.fn.has("termguicolors") == 1 then
-  vim.opt.termguicolors = true
+    vim.opt.termguicolors = true
 end

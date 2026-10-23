@@ -1,104 +1,38 @@
--- return {
---   -- Install catppuccin
---   {
---     "catppuccin/nvim",
---     name = "catppuccin",
---     priority = 1000, -- Ensures it loads early to prevent screen flash
---     opts = {
---       flavour = "mocha", -- latte, frappe, macchiato, mocha
---       term_colors = true,
---       transparent_background = true, -- Enables transparency
---       styles = {
---         sidebars = "transparent", -- Makes sidebars transparent (Neo-tree, etc.)
---         floats = "transparent", -- Makes floating windows transparent
---       },
---       integrations = {
---         cmp = true,
---         gitsigns = true,
---         nvimtree = true,
---         treesitter = true,
---         notify = true,
---         mini = {
---           enabled = true,
---           indentscope_color = "",
---         },
---       },
---     },
---   },
---
---   -- Configure LazyVim to load the colorscheme
---   {
---     "LazyVim/LazyVim",
---     opts = {
---       colorscheme = "catppuccin",
---     },
---   },
--- }
--- return {
---   {
---     "folke/tokyonight.nvim",
---     opts = {
---       transparent = true, -- Enable transparent background
---       styles = {
---         sidebars = "transparent", -- Sidebars like file tree transparent
---         floats = "transparent", -- Floating windows transparent
---       },
---     },
---   },
---   {
---     "LazyVim/LazyVim",
---     opts = {
---       colorscheme = "tokyonight",
---     },
---   },
--- }
--- return {
---   -- Configure the Tokyo Night plugin to use the "night" style variant
---   {
---     "folke/tokyonight.nvim",
---     lazy = false, -- Make sure it loads immediately during startup
---     priority = 1000, -- Load it before all other plugins
---     opts = {
---       style = "night", -- Choose between: storm, moon, night, or day
---     },
---   },
---
---   -- Tell LazyVim to use Tokyo Night as the active colorscheme
---   {
---     "LazyVim/LazyVim",
---     opts = {
---       colorscheme = "tokyonight-night",
---     },
---   },
--- }
---
--- return {
---   -- Add the unokai plugin
---   {
---     "tanvirtin/monokai.nvim",
---     lazy = false,
---     priority = 1000,
---   },
---
---   -- Configure LazyVim to use unokai
---   {
---     "LazyVim/LazyVim",
---     opts = {
---       colorscheme = "unokai",
---     },
---   },
--- }
-
 return {
-  "navarasu/onedark.nvim",
-  config = function()
-    require("onedark").setup({
-      style = "darker",
-      transparent = true,
-    })
-    require("onedark").load()
-  end,
+    -- 1. Install the VS Code colorscheme plugin
+    {
+        "mofiqul/vscode.nvim",
+        lazy = false, -- Load immediately during startup
+        priority = 1000, -- Load before other UI plugins
+        config = function()
+            -- Optional configuration adjustments
+            require("vscode").setup({
+                style = "dark", -- Choose 'dark' or 'light'
+                transparent = true, -- Enable transparent background if true
+                italic_comments = true, -- Use italics for code comments
+                disable_nvimtree_bg = true,
+            })
+        end,
+    },
+
+    -- 2. Tell LazyVim to use it as the main system colorscheme
+    {
+        "LazyVim/LazyVim",
+        opts = {
+            colorscheme = "vscode", -- Sets vim.cmd.colorscheme("vscode")
+        },
+    },
 }
+-- return {
+--   "navarasu/onedark.nvim",
+--   config = function()
+--     require("onedark").setup({
+--       style = "warmer",
+--       transparent = true,
+--     })
+--     require("onedark").load()
+--   end,
+-- }
 -- return {
 --   -- add gruvbox
 --   {
@@ -113,45 +47,6 @@ return {
 --     "LazyVim/LazyVim",
 --     opts = {
 --       colorscheme = "gruvbox",
---     },
---   },
--- }
---
---
---
--- return {
---   {
---     "polirritmico/monokai-nightasty.nvim",
---     lazy = false,
---     priority = 1000,
---     opts = {
---       dark_style_background = "transparent", -- Set dark background to transparent
---       light_style_background = "default",
---     },
---     config = function(_, opts)
---       require("monokai-nightasty").load(opts)
---     end,
---   },
---   {
---     "LazyVim/LazyVim",
---     opts = {
---       colorscheme = "monokai-nightasty",
---     },
---   },
--- }
--- return {
---   {
---     "catppuccin/nvim",
---     name = "catppuccin",
---     priority = 1000,
---     opts = {
---       transparent_background = true, -- Enables transparency
---     },
---   },
---   {
---     "LazyVim/LazyVim",
---     opts = {
---       colorscheme = "catppuccin",
 --     },
 --   },
 -- }
