@@ -8,12 +8,30 @@ local opts = { noremap = true, silent = true }
 keymap.set("i", "jj", "<Esc>", { noremap = false })
 -- vim.keymap.set()
 keymap.set({ "n", "i", "v" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save file" })
+-- keymap.set("n", "<leader>cv", "<cmd>lsp enable<cr>", { desc = "LSP Enable" })
+keymap.set("n", "<leader>cv", function()
+    vim.cmd("lsp enable") -- Or use vim.lsp.enable()
+end, { desc = "LSP Enable" })
+
+-- Terminal in a horizontal split window
+vim.keymap.set("n", "<leader>ts", function()
+    vim.cmd("split | terminal")
+end, { desc = "Terminal (Horizontal Split)" })
+
+-- Terminal in a vertical split window
+vim.keymap.set("n", "<leader>tv", function()
+    vim.cmd("vsplit | terminal")
+end, { desc = "Terminal (Vertical Split)" })
+
+-- Terminal in the current active window window
+vim.keymap.set("n", "<leader>to", function()
+    vim.cmd("terminal")
+end, { desc = "Terminal (Current Window)" })
+
 -- Select all
 -- keymap.set("n", "<C-z>", "gg<S-v>G")
--- New tab
-keymap.set("n", "te", ":tabedit")
 
-keymap.set("n", "go", "o<Esc>", { desc = "Open line below and stay in normal mode" })
+-- keymap.set("n", "go", "o<Esc>", { desc = "Open line below and stay in normal mode" })
 -- keymap.set("n", "gO", "O<Esc>", { desc = "Open line above and stay in normal mode" })
 -- keymap.set("n", "<tab>", ":tabnext<Return>", opts)
 -- keymap.set("n", "<s-tab>", ":tabprev<Return>", opts)
