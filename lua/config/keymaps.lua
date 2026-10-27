@@ -4,10 +4,22 @@
 -- :wvim.keymap.set("n", "<leader>sx", require("telescope").resume, { noremap = true, silent = true, desc = "Resume" })
 local keymap = vim.keymap
 local opts = { noremap = true, silent = true }
+-- Select completion with Tab
 
+keymap.set("i", "<Tab>", function()
+    if vim.fn.pumvisible() == 1 then
+        return "<C-n>"
+    end
+    return "<Tab>"
+end, {
+    expr = true,
+    silent = true,
+    desc = "Select next completion or insert Tab",
+})
 keymap.set("i", "jj", "<Esc>", { noremap = false })
 -- vim.keymap.set()
 keymap.set({ "n", "i", "v" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save file" })
+
 -- keymap.set("n", "<leader>cv", "<cmd>lsp enable<cr>", { desc = "LSP Enable" })
 keymap.set("n", "<leader>cv", function()
     vim.cmd("lsp enable") -- Or use vim.lsp.enable()
@@ -31,7 +43,7 @@ end, { desc = "Terminal (Current Window)" })
 -- Select all
 -- keymap.set("n", "<C-z>", "gg<S-v>G")
 
--- keymap.set("n", "go", "o<Esc>", { desc = "Open line below and stay in normal mode" })
+keymap.set("n", "go", "o<Esc>", { desc = "Open line below and stay in normal mode" })
 -- keymap.set("n", "gO", "O<Esc>", { desc = "Open line above and stay in normal mode" })
 -- keymap.set("n", "<tab>", ":tabnext<Return>", opts)
 -- keymap.set("n", "<s-tab>", ":tabprev<Return>", opts)
@@ -52,8 +64,8 @@ end, { desc = "Terminal (Current Window)" })
 -- keymap.set("v", "<Leader>D", '"_D')
 --
 -- -- Increment/decrement
--- keymap.set("n", "+", "<C-a>")
--- keymap.set("n", "-", "<C-x>")
+keymap.set("n", "+", "<C-a>")
+keymap.set("n", "-", "<C-x>")
 --
 -- -- Delete a word backwards
 -- keymap.set("n", "dw", 'vb"_d')
