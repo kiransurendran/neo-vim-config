@@ -3,13 +3,13 @@ return {
     dependencies = {
         "nvim-treesitter/nvim-treesitter",
     },
+    priority = 1000,
     event = "BufReadPost",
     config = function()
         require("nvim-biscuits").setup({
             show_on_start = true,
             toggle_keymap = "<leader>cb",
             clear_on_insert = true,
-
             -- FIX 2: Re-evaluate biscuits instantly as the cursor moves or enters insert mode
             cursor_line_only = true,
             on_events = { "CursorMoved", "CursorMovedI", "InsertEnter" },
