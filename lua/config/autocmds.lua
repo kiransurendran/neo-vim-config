@@ -71,3 +71,22 @@ vim.api.nvim_create_autocmd({ "InsertLeave" }, {
         end
     end,
 })
+
+vim.api.nvim_create_autocmd("BufNewFile", {
+    group = skeleton_group,
+    pattern = "*.md",
+    command = "0r ~/.config/nvim/templates/skeleton.md",
+})
+
+vim.api.nvim_create_autocmd("BufNewFile", {
+    pattern = "*.sh",
+    callback = function()
+        local template_path = vim.fn.expand("~/.config/nvim/templates/skeleton.sh")
+        if vim.fn.filereadable(template_path) == 1 then
+            -- Read the skeleton template into the new buffer
+            vim.cmd("0read " .. template_path)
+            -- Move the cursor to the end of the file
+            vim.cmd("$")
+        end
+    end,
+})

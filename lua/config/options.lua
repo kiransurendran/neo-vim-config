@@ -8,7 +8,7 @@
 -- vim.opt.guicursor = "n-v-c-i-ci-ve:hor20-blinkwait175-blinkoff150-blinkon175,r-cr:hor20"
 
 -- Blinking line (beam) cursor for all major modes
-vim.opt.guicursor = "n-v-c-i-ci-ve:vbar20-blinkwait175-blinkoff150-blinkon175,r-cr:vbar20"
+-- vim.opt.guicursor = "n-v-c-i-ci-ve:vbar20-blinkwait175-blinkoff150-blinkon175,r-cr:vbar20"
 vim.opt.number = true
 vim.opt.wrap = true
 vim.opt.winbar = "%=%m %f"
@@ -21,10 +21,15 @@ vim.opt.smarttab = true
 vim.opt.encoding = "utf-8"
 vim.opt.visualbell = true
 vim.opt.scrolloff = 5
--- vim.opt.fillchars = { eob = " " }
--- vim.opt.background = "dark"
 vim.opt.list = false
+vim.opt.swapfile = false
+-- vim.opt.undodir = true
+vim.opt.undodir = vim.fn.expand("~/.local/share/nvim/undodir")
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+vim.opt.showmatch = true -- highlight matching brackets
 
+-- vim.opt.background = "dark"
 vim.g.lazygit_config = false
 vim.opt.laststatus = 3 -- for avante
 vim.api.nvim_create_autocmd("FileType", {

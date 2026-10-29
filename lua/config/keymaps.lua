@@ -44,8 +44,46 @@ end, { desc = "Terminal (Current Window)" })
 -- keymap.set("n", "<C-z>", "gg<S-v>G")
 
 keymap.set("n", "go", "o<Esc>", { desc = "Open line below and stay in normal mode" })
--- keymap.set("n", "gO", "O<Esc>", { desc = "Open line above and stay in normal mode" })
--- keymap.set("n", "<tab>", ":tabnext<Return>", opts)
+keymap.set("n", "gO", "O<Esc>", { desc = "Open line above and stay in normal mode" })
+
+-- Delete the mark under the current cursor line
+keymap.set("n", "dm", function()
+    local current_line = vim.api.nvim_win_get_cursor(0)[1]
+    local current_buf = vim.api.nvim_get_current_buf()
+    local deleted = {}
+
+    -- Delete lowercase local marks (a-z).
+    for _, mark in ipairs(vim.fn.getmarklist(current_buf)) do
+        local name = mark.mark:match("'([a-z])$")
+
+        if name and mark.pos[2] == current_line then
+            vim.cmd("delmarks " .. name)
+            table.insert(deleted, name)
+        end
+    end
+
+    -- Delete uppercase global marks (A-Z).
+    for _, mark in ipairs(vim.fn.getmarklist()) do
+        local name = mark.mark:match("'([A-Z])$")
+
+        if name and mark.pos[1] == current_buf and mark.pos[2] == current_line then
+            vim.cmd("delmarks " .. name)
+            table.insert(deleted, name)
+        end
+    end
+
+    if #deleted > 0 then
+        vim.notify("Deleted marks: " .. table.concat(deleted, ", "), vim.log.levels.INFO)
+    else
+        vim.notify("No alphabetic marks found on this line", vim.log.levels.INFO)
+    end
+end, { desc = "Delete marks on current line" }) -- keymap.set("n", "<tab>", ":tabnext<Return>", opts)
+
+keymap.set("v", "<leader>r", '"hy:%s/<C-r>h//g<Left><Left>', {
+    desc = "Find and replace visual selection globally",
+    silent = false,
+})
+
 -- keymap.set("n", "<s-tab>", ":tabprev<Return>", opts)
 -- keymap.set("n", "te", ":tabedit")
 
