@@ -104,6 +104,20 @@ keymap.set("v", "<leader>r", '"hy:%s/<C-r>h//g<Left><Left>', {
 -- -- Increment/decrement
 keymap.set("n", "+", "<C-a>")
 keymap.set("n", "-", "<C-x>")
+
+local pairs = { [")"] = true, ["]"] = true, ["}"] = true, ['"'] = true, ["'"] = true, ["`"] = true, [">"] = true }
+vim.keymap.set("i", "<Tab>", function()
+    local col = vim.fn.col(".")
+    local line = vim.fn.getline(".")
+    local next_char = string.sub(line, col, col)
+
+    if pairs[next_char] then
+        return "<Right>"
+    else
+        return "<Tab>"
+    end
+end, { expr = true, silent = true, desc = "Tabout of pairs" })
+
 --
 -- -- Delete a word backwards
 -- keymap.set("n", "dw", 'vb"_d')
