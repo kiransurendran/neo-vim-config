@@ -1,6 +1,8 @@
 return {
     {
         "vimpostor/vim-tpipeline",
+        -- Only load the plugin if we are actually inside a tmux session
+        enabled = vim.env.TMUX ~= nil,
         lazy = false,
         config = function()
             vim.g.tpipeline_auto_group = 1
